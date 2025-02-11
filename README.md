@@ -1,4 +1,4 @@
-CKS by Kodecloud
+🛡️ Kubernetes Security - CKS Preparation
 
 Kube-Bench tool dwnload link
 https://github.com/aquasecurity/kube-bench/releases/download/v0.4.0/kube-bench_0.4.0_linux_amd64.tar.gz
@@ -7,7 +7,7 @@ https://github.com/aquasecurity/kube-bench/releases/download/v0.4.0/kube-bench_0
 
 ===========================XXXXXXXXXXXXXXXXXXXXXXXX============================XXXXXXXXXXXXXXXXXXXXXXXX==================
 
-TLS:-
+🔐 TLS & mTLS in Kubernetes
 Certificate authority
 PKI Public key infrastructure
 
@@ -77,13 +77,12 @@ Use tokens to create config
 Map token based secret to user
 
 
-
 Secure docker host by creating TLS certs and CA cert for client and server then enable tlsverify in config file
 Copy client and CA certs to .docker dir in user home dir to access docker cli
 
 ===========================XXXXXXXXXXXXXXXXXXXXXXXX============================XXXXXXXXXXXXXXXXXXXXXXXX==================
 
-SYSTEM HARDENING:
+🛡️ System Hardening for Kubernetes
 	Limit access to nodes
 	RBAC Access
 	Remove absolute packages and services
@@ -108,9 +107,7 @@ curl -L -o opa https://github.com/open-policy-agent/opa/releases/download/v0.11.
 
 ===========================XXXXXXXXXXXXXXXXXXXXXXXX============================XXXXXXXXXXXXXXXXXXXXXXXX==================
 
-Runtime:
-
-
+🔥 Container Runtime Security:
 When we run docker run command
 	1. Docker CLI converts command to REST API call
 	2. Docker Daemon pulls image from registry
@@ -131,7 +128,7 @@ Create runtimeclass object with name and handler
 use this in pod defination as runtimeClassName: in .spec to se that runtime to run container
 
 ===========================XXXXXXXXXXXXXXXXXXXXXXXX============================XXXXXXXXXXXXXXXXXXXXXXXX==================
-mTLS:
+📌 Mutual TLS (mTLS) - Additional Steps
 
 Step 1: Client Initiates a TLS Handshake
 		The client sends a ClientHello message to the server.
@@ -184,6 +181,7 @@ Step 8: Secure Encrypted Communication Starts
 Istio and Linkerd for mTLS
 ===========================XXXXXXXXXXXXXXXXXXXXXXXX============================XXXXXXXXXXXXXXXXXXXXXXXX==================
 
+🔍 Kubernetes Security & Compliance Tools
 SBOM is detailed inventory of all components, libraries, and dependencies in a software application
 
 SBOM Tools for Kubernetes:
@@ -196,10 +194,9 @@ kube-linter lint nginx.yml ==> Will provide suggestion for following best practi
 
 ===========================XXXXXXXXXXXXXXXXXXXXXXXX============================XXXXXXXXXXXXXXXXXXXXXXXX==================
 
+🔐 Kubernetes Security Categories
 
-1. Image Scanning & Container Security
-Detect vulnerabilities in container images before deployment.
-
+1️⃣ Image Scanning & Container Security
 Trivy 						– Lightweight vulnerability scanner for container images, file systems, and Git repositories.
 Anchore 					– Open-source image analysis and policy-based security enforcement.
 Clair 						– Static analysis of vulnerabilities in container images.
@@ -208,7 +205,7 @@ Docker Bench for Security 	– Assesses security configurations of Docker hosts 
 
 -------------------------------------------------------------------------------------------------------------------------
 
-2. Kubernetes Runtime Security & Threat Detection
+ 2️⃣ Kubernetes Runtime Security
 Detect and prevent runtime security threats in Kubernetes clusters.
 
 Falco 						– Open-source runtime security tool that detects abnormal behavior in containers.
@@ -218,7 +215,7 @@ NeuVector 					– Full lifecycle Kubernetes security, including runtime protect
 
 -------------------------------------------------------------------------------------------------------------------------
 
-3. Kubernetes Network Security & Policy Enforcement
+3️⃣ Network Security & Policy Enforcement
 Secure Kubernetes network traffic using policies and monitoring.
 
 Cilium 		– Provides eBPF-powered security, networking, and observability.
@@ -228,7 +225,7 @@ Linkerd 	– Lightweight service mesh with security features like automatic TLS 
 
 -------------------------------------------------------------------------------------------------------------------------
 
-4. Kubernetes Compliance & Policy Management
+4️⃣ Kubernetes Compliance & Policy Management
 Enforce best practices and compliance for Kubernetes configurations.
 
 OPA Gatekeeper 		– Enforces Kubernetes security policies using Open Policy Agent (OPA).
@@ -238,7 +235,7 @@ Kube-hunter 		– Actively scans Kubernetes clusters for security vulnerabilitie
 
 -------------------------------------------------------------------------------------------------------------------------
 
-5. Secret Management & Encryption
+5️⃣ Secrets Management & Encryption
 Manage Kubernetes secrets securely.
 
 Sealed Secrets (Bitnami) 	– Encrypts Kubernetes secrets to store them safely in Git repositories.
@@ -248,7 +245,7 @@ SOPS (Mozilla) 				– Encrypts Kubernetes secrets and configuration files.
 
 -------------------------------------------------------------------------------------------------------------------------
 
-6. Kubernetes API Security & Identity Management
+6️⃣ Kubernetes API Security & RBAC Management
 Secure Kubernetes API access and RBAC.
 
 K-Rail 			– Kubernetes RBAC policy enforcement and security guardrails.
@@ -258,7 +255,7 @@ Dex 			– Open-source OIDC authentication provider for Kubernetes.
 
 -------------------------------------------------------------------------------------------------------------------------
 
-7. Supply Chain Security & CI/CD Security
+7️⃣ Software Supply Chain Security
 Secure software supply chains in Kubernetes environments.
 
 Sigstore (Cosign, Rekor, Fulcio) 	– Provides signing and verification for container images.
@@ -268,7 +265,7 @@ Notary 								– Helps ensure the integrity of container images.
 
 -------------------------------------------------------------------------------------------------------------------------
 
-8. Observability & Forensics
+8️⃣ Observability & Security Forensics
 Security visibility and incident response.
 
 Kube-monkey 			– Tests Kubernetes cluster resilience by randomly terminating pods.
