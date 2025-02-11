@@ -1,16 +1,14 @@
-🛡️ Kubernetes Security - CKS Preparation (KodeCloud)
+🛡️ Kubernetes Security - CKS Preparation
 📌 Security Tools & Best Practices for Kubernetes
 🔍 Kubernetes Security Benchmarking
 📌 Kube-Bench (CIS Kubernetes Benchmark)
 Kube-Bench checks Kubernetes clusters against CIS security benchmarks.
 
-bash
-Copy
-Edit
 # Download and run kube-bench
 curl -L -o kube-bench.tar.gz https://github.com/aquasecurity/kube-bench/releases/download/v0.4.0/kube-bench_0.4.0_linux_amd64.tar.gz
 tar -xvf kube-bench.tar.gz
 ./kube-bench --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml
+
 🔐 TLS & mTLS in Kubernetes
 📌 TLS Handshake (RSA-based)
 ClientHello → Sends supported cipher suites, TLS versions, and a random value.
@@ -24,9 +22,7 @@ Secure Communication Begins → Both client and server use the session key.
 🔹 Both client & server authenticate using certificates.
 🔹 Session key is established after mutual authentication.
 🔹 Used in Istio, Linkerd, and Zero Trust Networks.
-pgsql
-Copy
-Edit
+
 |------------------------------------------------------|
 | Client                                       Server  |
 |  | ------- ClientHello ------------------>  |       |
@@ -50,9 +46,7 @@ Edit
 Generate CA & TLS certificates for both client & server.
 Enable tlsverify in the Docker config.
 Copy client & CA certificates to ~/.docker/ to allow CLI access.
-bash
-Copy
-Edit
+
 # Verify TLS connection
 docker --tlsverify -H tcp://remote-docker-host:2376 version
 🔍 Kubernetes Security & Compliance Tools
@@ -61,9 +55,7 @@ Syft → Generates SBOMs for container images.
 Grype → Scans SBOMs for vulnerabilities.
 Trivy → Lightweight image scanner.
 Kubescape → Detects misconfigurations & compliance violations.
-bash
-Copy
-Edit
+
 trivy image myapp:v1.0  # Scan an image
 🔥 Container Runtime Security
 📌 How a Docker Container Starts:
@@ -76,22 +68,16 @@ RunC → Creates namespaces & cGroups to run the container.
 
 gVisor (runsc) → Lightweight user-space runtime.
 Kata Containers → VM-based lightweight runtime.
-bash
-Copy
-Edit
+
 docker run --runtime=runsc -d nginx
 📌 RuntimeClass Configuration:
-yaml
-Copy
-Edit
+
 apiVersion: node.k8s.io/v1
 kind: RuntimeClass
 metadata:
   name: gvisor-runtime
 handler: runsc
-yaml
-Copy
-Edit
+
 spec:
   runtimeClassName: gvisor-runtime
 🔐 Kubernetes Security Categories
