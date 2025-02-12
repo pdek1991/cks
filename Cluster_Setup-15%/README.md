@@ -34,7 +34,7 @@
 
 ## 🔹 Egress Network Policies (Restrict Outgoing Traffic)
 
-	reating a Deny-All Egress policy
+	Creating a Deny-All Egress policy
 
 	Allowing only specific external traffic (e.g., DNS, API, DBs)
 
