@@ -1,70 +1,70 @@
-1️⃣ Fundamentals of Kubernetes Network Policies
+## 🔹 Fundamentals of Kubernetes Network Policies
 
-What are Network Policies?
+	What are Network Policies?
 
-How Kubernetes controls network traffic at the pod level
+	How Kubernetes controls network traffic at the pod level
 
-Role of CNI (Container Network Interface) in enforcing NSPs
+	Role of CNI (Container Network Interface) in enforcing NSPs
 
-Supported CNIs: Calico, Cilium, Weave (Flannel does NOT support NSPs)
+	Supported CNIs: Calico, Cilium, Weave (Flannel does NOT support NSPs)
 
-Default behavior of Kubernetes networking (All traffic is allowed unless restricted by NSPs)
+	Default behavior of Kubernetes networking (All traffic is allowed unless restricted by NSPs)
 
-2️⃣ Network Policy Components & YAML Structure
+## 🔹 Network Policy Components & YAML Structure
 
-podSelector (Which pods the policy applies to)
+	podSelector (Which pods the policy applies to)
 
-ingress (Defines allowed incoming traffic)
+	ingress (Defines allowed incoming traffic)
 
-egress (Defines allowed outgoing traffic)
+	egress (Defines allowed outgoing traffic)
 
-policyTypes (Specifies ingress, egress, or both)
+	policyTypes (Specifies ingress, egress, or both)
 
-Label-based traffic control
+	Label-based traffic control
 
-3️⃣ Ingress Network Policies (Restrict Incoming Traffic)
+## 🔹 Ingress Network Policies (Restrict Incoming Traffic)
 
-Creating a Deny-All Ingress policy
+	Creating a Deny-All Ingress policy
 
-Allowing ingress from specific pods
+	Allowing ingress from specific pods
 
-Allowing traffic only from a particular namespace
+	Allowing traffic only from a particular namespace
 
-Combining multiple ingress rules
+	Combining multiple ingress rules
 
-4️⃣ Egress Network Policies (Restrict Outgoing Traffic)
+## 🔹 Egress Network Policies (Restrict Outgoing Traffic)
 
-Creating a Deny-All Egress policy
+	reating a Deny-All Egress policy
 
-Allowing only specific external traffic (e.g., DNS, API, DBs)
+	Allowing only specific external traffic (e.g., DNS, API, DBs)
 
-Namespace-based egress restrictions
+	Namespace-based egress restrictions
 
-5️⃣ Advanced Use Cases & Scenarios
+## 🔹 Advanced Use Cases & Scenarios
 
-Namespace isolation using NSPs
+	Namespace isolation using NSPs
 
-Multi-tier application security (frontend, backend, database)
+	Multi-tier application security (frontend, backend, database)
 
-Restricting pod-to-pod communication across namespaces
+	Restricting pod-to-pod communication across namespaces
 
-Implementing Zero Trust networking in Kubernetes
+	Implementing Zero Trust networking in Kubernetes
 
-6️⃣ Debugging & Troubleshooting Network Policies
+## 🔹 Debugging & Troubleshooting Network Policies
 
-Using kubectl describe networkpolicy
+	Using kubectl describe networkpolicy
 
-Checking applied policies with kubectl get networkpolicy
+	Checking applied policies with kubectl get networkpolicy
 
-Testing pod connectivity using kubectl exec + curl/wget/ping
+	Testing pod connectivity using kubectl exec + curl/wget/ping
 
-Debugging tools for different CNIs:
+	Debugging tools for different CNIs:
 
-calicoctl for Calico
+	calicoctl for Calico
 
-cilium monitor for Cilium
+	cilium monitor for Cilium
 
-Common mistakes and misconfigurations
+	Common mistakes and misconfigurations
 
 
 ## 🔹 General Best Practices  
@@ -93,7 +93,7 @@ Common mistakes and misconfigurations
 
 
 
-🔹 Egress Best Practices
+## 🔹 Egress Best Practices
 
 ✅ Restrict Outbound Traffic – Apply deny-all egress as a baseline.
 
@@ -101,7 +101,7 @@ Common mistakes and misconfigurations
 
 ✅ Use DNS-Based Egress Filtering – Some CNIs (e.g., Cilium) support DNS-aware egress rules.
 
-🔹 Advanced Best Practices
+## 🔹 Advanced Best Practices
 
 ✅ Limit Cross-Namespace Communication – Use namespaceSelector to prevent unnecessary cross-namespace traffic.
 
