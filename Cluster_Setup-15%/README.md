@@ -63,4 +63,32 @@ Debugging tools for different CNIs:
 calicoctl for Calico
 
 cilium monitor for Cilium
+
 Common mistakes and misconfigurations
+
+
+🔹 General Best Practices
+✅ Default Deny-All Policy – Start with a deny-all rule and explicitly allow only necessary traffic.
+✅ Least Privilege Model (Zero Trust) – Only allow traffic that is explicitly required.
+✅ Apply Namespace-Based Isolation – Use policies to prevent pods in one namespace from communicating with others.
+✅ Use Labels Effectively – Define pod selectors carefully to apply policies only where needed.
+✅ Minimize Wildcard Usage ({}) – Avoid broad, unrestricted network policies.
+
+
+🔹 Ingress Best Practices
+✅ Block All Unnecessary Ingress Traffic – Use a deny-all ingress policy as a starting point.
+✅ Allow Traffic Only from Trusted Pods – Specify podSelector rules instead of allowing all traffic.
+✅ Use Namespace Selectors – Restrict access from specific namespaces.
+✅ Limit External Exposure – Allow ingress traffic only from specific IP ranges when necessary.
+
+🔹 Egress Best Practices
+✅ Restrict Outbound Traffic – Apply deny-all egress as a baseline.
+✅ Allow Only Necessary External Traffic – Define egress policies to restrict external API/database access.
+✅ Use DNS-Based Egress Filtering – Some CNIs (e.g., Cilium) support DNS-aware egress rules.
+
+🔹 Advanced Best Practices
+✅ Limit Cross-Namespace Communication – Use namespaceSelector to prevent unnecessary cross-namespace traffic.
+✅ Implement Network Segmentation – Separate frontend, backend, and database layers.
+✅ Regularly Audit Network Policies – Use tools like kubectl describe networkpolicy to check applied rules.
+✅ Leverage CNI Features – Use Calico, Cilium, or Weave for advanced network security features.
+
