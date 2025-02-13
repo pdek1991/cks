@@ -1,0 +1,45 @@
+## CIS Benchmark
+##INSTALL
+
+curl -L https://github.com/aquasecurity/kube-bench/releases/download/v0.6.2/kube-bench_0.6.2_linux_amd64.rpm -o kube-bench_0.6.2_linux_amd64.rpm
+
+sudo yum install kube-bench_0.6.2_linux_amd64.rpm -y
+
+##Run
+
+./kube-bench --config-dir=./cfg --config=./cfg/config.yaml
+
+
+
+
+
+📌 CIS Security Review for etcd
+✅ Encrypt etcd data at rest
+✅ Use TLS for etcd client-server communication
+✅ Restrict access to etcd API
+✅ Regularly back up etcd
+
+
+📌 CIS Security Review for Kubelet
+✅ Disable anonymous access to Kubelet API
+✅ Enable authentication & authorization
+✅ Harden Kubelet API access
+✅ Limit container security privileges
+✅ Rotate Kubelet client certificates automatically
+✅ Restrict /metrics access to avoid information leakage
+
+
+📌 CIS Security Review for CoreDNS
+✅ Run CoreDNS as a non-root user
+✅ Restrict external DNS lookups
+✅ Apply RBAC to CoreDNS Service Account
+✅ Prevent unauthorized access to CoreDNS Pods
+
+
+📌 CIS Security Review for API Server	
+✅ Enable TLS encryption for API Server communication
+✅ Disable anonymous access
+✅ Enforce RBAC Authorization
+✅ Enable Audit Logs for monitoring API requests
+✅ Restrict Service Account Token Automount
+✅ Secure Admission Controllers
