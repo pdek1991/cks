@@ -1,0 +1,96 @@
+## PROD TEST and DEFAULT NS has busybox pod deny all ingress and egress traffic applied on test and prod ns 
+## Allow egress from prod ns to test ns and allow ingress on test ns from prod ns
+## Allow ingress from default ns with pod labeled as run:default to prod ns podSelector
+## (Nested policy to validate ns and pod label both)
+
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: prod
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: test
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-egress-to-test
+  namespace: prod
+spec:
+  podSelector:
+    matchLabels:
+      run: prod
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          env: test
+    ports:
+    - protocol: TCP
+      port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-from-prod
+  namespace: test
+spec:
+  podSelector:
+    matchLabels:
+      run: test
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          env: prod
+    ports:
+    - protocol: TCP
+      port: 80
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-from-default
+  namespace: prod
+spec:
+  podSelector:
+    matchLabels:
+      run: prod
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          env: default
+      podSelector:
+        matchLabels:
+          run: default
+    ports:
+    - protocol: TCP
+      port: 80
+
