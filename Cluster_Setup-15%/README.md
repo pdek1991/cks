@@ -111,3 +111,44 @@
 
 ✅ Leverage CNI Features – Use Calico, Cilium, or Weave for advanced network security features.
 
+
+## 🔹Use CIS benchmark to review the security configuration of Kubernetes components 
+
+Kube-Bench tool dwnload link
+https://github.com/aquasecurity/kube-bench/releases/download/v0.4.0/kube-bench_0.4.0_linux_amd64.tar.gz
+
+./kube-bench --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml
+
+
+
+## 🔹 Ingress with TLS
+✅ Install an Ingress Controller 
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+
+✅ Create a TLS Certificate
+	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=mycas.com/O=mycas"
+	kubectl create secret tls mycas-tls --key=tls.key --cert=tls.crt
+
+✅ Create deployment and Service
+✅ Create Ingress object with TLS 
+✅ Update local DNS file and check with NodeIP and verify
+
+
+## 🔹 Protect metadata endpoint
+    AWS: http://169.254.169.254/latest/meta-data/
+	GCP: http://169.254.169.254/computeMetadata/v1/
+	Azure: http://169.254.169.254/metadata/
+
+✅  NetworkPolicies to Block Metadata Access
+✅	Restrict External Access to NodePort Services
+✅	Disable Service Account Auto-Mounting
+✅	Implement mTLS for Internal Communication
+
+
+## 🔹 Verify Platform Binaries
+
+✅	https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.32.md download server binaries and verify 	sha512sum
+	curl -LO https://dl.k8s.io/release/v1.28.0/bin/linux/amd64/kubectl.sha256
+
+✅	Scan Kubernetes Binaries for Vulnerabilities using trivy
+	trivy fs ./kubectl

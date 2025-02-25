@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secure-pod
+spec:
+  automountServiceAccountToken: false
+
+---
+
+apiVersion: v1
+automountServiceAccountToken: false
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2025-02-11T16:55:40Z"
+  name: default
+  namespace: default
+  resourceVersion: "3034"
+  uid: 6a8fc081-09ff-48f3-a841-33b0b42d649e
+  
+---
+
